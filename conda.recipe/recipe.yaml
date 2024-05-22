@@ -2,7 +2,7 @@
 # can later be used in Jinja expressions
 context:
   version: 0.0.1
-  name: rattler-elastix
+  name: elastix
 
 # top level package information (name and version)
 package:
@@ -11,9 +11,21 @@ package:
 
 # location to get the source from
 source:
-  - url: https://github.com/SuperElastix/elastix/releases/download/5.1.0/elastix-5.1.0-win64.zip
-    sha256: 644A230CA99535DE44604E57E3D895AF8A1FDE380909F6F143BFE8DFD6F688E1
-    target_directory: elastix
+  - if: win
+    then:
+    - url: https://github.com/SuperElastix/elastix/releases/download/5.1.0/elastix-5.1.0-win64.zip
+      sha256: 644A230CA99535DE44604E57E3D895AF8A1FDE380909F6F143BFE8DFD6F688E1
+      target_directory: elastix
+  - if: linux
+    then:
+    - url: https://github.com/SuperElastix/elastix/releases/download/5.1.0/elastix-5.1.0-linux.zip
+      sha256: B333F2A911C23BA978C4A249722C8DFB29F81D190AB69553CE1622FAE39C3CF9
+      target_directory: elastix
+  - if: osx
+    then:
+    - url: https://github.com/SuperElastix/elastix/releases/download/5.1.0/elastix-5.1.0-mac.zip
+      sha256: 2B9C31BFCC1E7A5628616E3FCA6C18ABE994F80A53D72F5BECCF10E42C760696
+      target_directory: elastix
 
 
 # build number (should be incremented if a new build is made, but version is not incrementing)
@@ -28,10 +40,24 @@ requirements:
 
 # tests to validate that the package works as expected
 tests:
-  - package_contents:
-      files:
-        - elastix.exe
-        - transformix.exe
+  - if: win
+    then:
+    - package_contents:
+        files:
+          - elastix.exe
+          - transformix.exe
+  - if: linux
+    then:
+    - package_contents:
+        files:
+          - bin/elastix
+          - bin/transformix
+  - if: osx
+    then:
+    - package_contents:
+        files:
+          - bin/elastix
+          - bin/transformix
 
 
 # information about the package
