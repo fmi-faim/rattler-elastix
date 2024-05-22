@@ -1,0 +1,52 @@
+# this sets up "context variables" (in this case name and version) that
+# can later be used in Jinja expressions
+context:
+  version: 0.0.1
+  name: rattler-elastix
+
+# top level package information (name and version)
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+# location to get the source from
+source:
+  - url: https://github.com/SuperElastix/elastix/releases/download/5.1.0/elastix-5.1.0-win64.zip
+    sha256: 644A230CA99535DE44604E57E3D895AF8A1FDE380909F6F143BFE8DFD6F688E1
+    target_directory: elastix
+
+
+# build number (should be incremented if a new build is made, but version is not incrementing)
+build:
+  number: 0
+
+
+# the requirements at build and runtime
+requirements:
+  host:
+  run:
+
+# tests to validate that the package works as expected
+tests:
+  - package_contents:
+      files:
+        - elastix.exe
+        - transformix.exe
+
+
+# information about the package
+about:
+  homepage: https://github.com/fmi-faim/rattler-elastix
+  license: Apache-2.0
+  summary: 'Custom Fiji bundle for distribution via conda'
+  description: |
+    elastix: a toolbox for rigid and nonrigid registration of images
+    Deployed as a conda package at the
+    Friedrich Miescher Institute for Biomedical Research (FMI)
+  repository: https://github.com/fmi-faim/rattler-elastix
+  documentation: https://github.com/fmi-faim/rattler-elastix
+
+# the below is conda-forge specific!
+extra:
+  recipe-maintainers:
+    - imagejan
