@@ -30,7 +30,7 @@ source:
 
 # build number (should be incremented if a new build is made, but version is not incrementing)
 build:
-  number: 0
+  number: 1
 
 
 # the requirements at build and runtime
@@ -64,7 +64,7 @@ tests:
 about:
   homepage: https://github.com/fmi-faim/rattler-elastix
   license: Apache-2.0
-  summary: 'Custom Fiji bundle for distribution via conda'
+  summary: 'elastix - for distribution via conda'
   description: |
     elastix: a toolbox for rigid and nonrigid registration of images
     Deployed as a conda package at the
