@@ -30,13 +30,21 @@ source:
 
 # build number (should be incremented if a new build is made, but version is not incrementing)
 build:
-  number: 1
+  number: 2
 
 
 # the requirements at build and runtime
 requirements:
   host:
   run:
+    - ld-linux-x86-64
+    - libc
+    - libgcc_s
+    - libgomp
+    - libm
+    - libdl
+    - libpthread
+    - libstdcpp
 
 # tests to validate that the package works as expected
 tests:
